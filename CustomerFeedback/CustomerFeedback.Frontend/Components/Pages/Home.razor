@@ -1,0 +1,51 @@
+﻿@page "/"
+@using CustomerFeedback.Models
+@using AWS.Messaging
+@inject ILogger<Home> logger
+@inject IMessagePublisher publisher
+
+<PageTitle>Home</PageTitle>
+
+<h1>Provide Customer Feedback</h1>
+
+@if (!string.IsNullOrEmpty(Status))
+{
+    <h2 style="color: green">@Status</h2>
+}
+
+<form method="post" @onsubmit="Submit" @formname="starship-plain-form">
+    <AntiforgeryToken />
+    <p>
+        <label>
+            Product Name:
+        </label>
+        <br />
+        <InputText @bind-Value="Model!.ProductName" />
+    </p>
+    <p>
+        <label>
+            Feedback:
+        </label>
+        <br />
+        <InputText @bind-Value="Model!.Feedback" />
+    </p>
+    <p>
+        <button type="submit">Submit</button>
+    </p>
+</form>
+
+@code {
+
+    public string? Status { get; set; }
+
+    public FeedbackSubmission? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    private async Task Submit()
+    {
+        await publisher.PublishAsync(Model);
+        Status = "Feedback has been submitted on: " + DateTime.Now;
+        Model = new();
+    }
+}

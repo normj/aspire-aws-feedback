@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>9b7c86e1-8c0d-4d7b-96fa-0e165654ae0d</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.0-preview.6.24214.1" />
+    <PackageReference Include="Aspire.Hosting.AWS" Version="8.0.0-preview.6.24214.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZipCodes.API\ZipCodes.API.csproj" />
+    <ProjectReference Include="..\ZipCodes.DataLoader\ZipCodes.DataLoader.csproj" />
+    <ProjectReference Include="..\ZipCodes.Frontend\ZipCodes.Frontend.csproj" />
+  </ItemGroup>
+
+</Project>

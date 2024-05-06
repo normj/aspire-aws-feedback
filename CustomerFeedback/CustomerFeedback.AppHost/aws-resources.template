@@ -1,0 +1,54 @@
+{
+    "AWSTemplateFormatVersion" : "2010-09-09",
+    "Parameters" : {
+    },
+    "Resources" : {
+        "FeedbackQueue" : {
+            "Type" : "AWS::SQS::Queue",
+            "Properties" : {
+            }
+        },
+        "FeedbackTopic" : {
+            "Type" : "AWS::SNS::Topic",
+            "Properties" : {
+                "Subscription" : [
+                    {"Protocol" : "sqs", "Endpoint" : {"Fn::GetAtt" : [ "FeedbackQueue", "Arn"]}}
+                ]
+            }
+        },
+        "FeedbackQueuePolicy": {
+            "Type": "AWS::SQS::QueuePolicy",
+            "Properties": {
+                "Queues": [
+                    { "Ref": "FeedbackQueue" }
+                ],
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": "sqs:SendMessage",
+                            "Principal": {
+                                "Service": "sns.amazonaws.com"
+                            },
+                            "Resource": { "Fn::GetAtt": [ "FeedbackQueue", "Arn" ] },
+                            "Condition": {
+                                "ArnEquals": {
+                                    "aws:SourceArn": { "Ref": "FeedbackTopic" }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "Outputs" : {
+        "FeedbackQueueUrl" : {
+            "Value" : { "Ref" : "FeedbackQueue" }
+        },
+        "FeedbackTopicArn" : {
+            "Value" : { "Ref" : "FeedbackTopic" }
+        }
+    }
+}

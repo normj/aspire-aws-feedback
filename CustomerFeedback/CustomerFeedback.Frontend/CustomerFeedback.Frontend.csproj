@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWS.Messaging" Version="0.9.1" />
+    <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.300" />
+    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.7.301.34" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CustomerFeedback.Models\CustomerFeedback.Models.csproj" />
+    <ProjectReference Include="..\CustomerFeedback.ServiceDefaults\CustomerFeedback.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+</Project>
