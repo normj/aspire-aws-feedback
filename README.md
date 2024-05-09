@@ -65,3 +65,11 @@ can be integrated into the AppHost. DynamoDB Local is the emulator for the AWS D
 that can be run as a container. The project uses some experimental API in the AppHost's `Aspire.Hosting.AWS.Experimental`
 folder for streamlining add the DynamoDB Local container and referencing it to projects. It would be really 
 helpful to hear if these APIs are worth adding to the `Aspire.Hosting.AWS` package.
+
+
+### LocalStack example
+
+This is a copy of the Customer Feedback demo but using LocalStack configured in the AppHost. There are no plans to add
+first class support for LocalStack to the `Aspire.Hosting.AWS` package. Could be interesting for somebody else
+to create a `Aspire.Hosting.LocalStack` package that simplifies what I'm doing in this sample. I'm open to make sure
+`Aspire.Hosting.AWS` has the right extension points to make this easier.
