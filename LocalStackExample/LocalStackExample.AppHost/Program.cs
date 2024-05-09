@@ -1,4 +1,7 @@
 using Amazon.CloudFormation;
+using Amazon.SimpleNotificationService;
+using Amazon.SQS;
+
 
 var builder = DistributedApplication.CreateBuilder(args);
 
@@ -19,12 +22,12 @@ awsResources.Resource.CloudFormationClient = cfClient;
 
 builder.AddProject<Projects.LocalStackExample_Frontend>("LocalStackExample-frontend")
        .WithReference(awsResources)
-       .WithEnvironment("AWS_ENDPOINT_URL_SQS", localStackUri.ToString())
-       .WithEnvironment("AWS_ENDPOINT_URL_SNS", localStackUri.ToString());
+       .WithEnvironment($"AWS_ENDPOINT_URL_{AmazonSimpleNotificationServiceConfig.ServiceId}", localStackUri.ToString())
+       .WithEnvironment($"AWS_ENDPOINT_URL_{AmazonSQSConfig.ServiceId}", localStackUri.ToString());
 
 builder.AddProject<Projects.LocalStackExample_Processor>("LocalStackExample-processor")
        .WithReference(awsResources)
-       .WithEnvironment("AWS_ENDPOINT_URL_SQS", localStackUri.ToString())
-       .WithEnvironment("AWS_ENDPOINT_URL_SNS", localStackUri.ToString());
+       .WithEnvironment($"AWS_ENDPOINT_URL_{AmazonSimpleNotificationServiceConfig.ServiceId}", localStackUri.ToString())
+       .WithEnvironment($"AWS_ENDPOINT_URL_{AmazonSQSConfig.ServiceId}", localStackUri.ToString());
 
 builder.Build().Run();

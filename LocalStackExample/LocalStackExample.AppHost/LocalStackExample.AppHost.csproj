@@ -12,6 +12,8 @@
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.0-preview.6.24214.1" />
     <PackageReference Include="Aspire.Hosting.AWS" Version="8.0.0-preview.6.24214.1" />
+    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.7.301.35" />
+    <PackageReference Include="AWSSDK.SQS" Version="3.7.301" />
   </ItemGroup>
 
   <ItemGroup>
