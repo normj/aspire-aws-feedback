@@ -18,6 +18,7 @@ var localStack = builder.AddContainer("localstack", "localstack/localstack")
                         .WithEnvironment("DEBUG", "1");
 
 var awsResources = builder.AddAWSCloudFormationTemplate("LocalStackExample-Stack", "aws-resources.template");
+
 awsResources.Resource.CloudFormationClient = cfClient;
 
 builder.AddProject<Projects.LocalStackExample_Frontend>("LocalStackExample-frontend")
@@ -31,3 +32,4 @@ builder.AddProject<Projects.LocalStackExample_Processor>("LocalStackExample-proc
        .WithEnvironment($"AWS_ENDPOINT_URL_{AmazonSQSConfig.ServiceId}", localStackUri.ToString());
 
 builder.Build().Run();
+ 
