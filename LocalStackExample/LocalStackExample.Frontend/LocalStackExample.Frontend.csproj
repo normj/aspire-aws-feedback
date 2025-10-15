@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWS.Messaging" Version="1.0.0" />
-    <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="4.0.1" />
-    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="4.0.0.4" />
+    <PackageReference Include="AWS.Messaging" Version="1.0.1" />
+    <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="4.0.3.6" />
+    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="4.0.1.8" />
   </ItemGroup>
 
   <ItemGroup>

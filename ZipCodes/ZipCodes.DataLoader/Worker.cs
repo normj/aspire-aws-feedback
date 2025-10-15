@@ -9,7 +9,7 @@ public class Worker(ILogger<Worker> logger, IAmazonDynamoDB ddbClient, IConfigur
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        logger.LogInformation("DDB Endpoint: {endpoint}", ddbClient.Config.DetermineServiceURL());
+        logger.LogInformation("DDB Endpoint: {endpoint}", ddbClient.DetermineServiceOperationEndpoint(new ListTablesRequest()).URL);
 
         var zipCodeTableName = configuration["AWS:Resources:ZipCodesTable"];
 
